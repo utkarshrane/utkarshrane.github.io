@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Utkarsh Rane — Data labeling, QA, and Java</title>
+  <meta name="description" content="Utkarsh Rane, from Talod. Data Labeling and QA Associate at iMerit from December 2023 to July 2026, and builder of Java backends for Tic Tac Toe and a parking lot system.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,640&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #efe6d6;
+      --sheet: #f7f1e6;
+      --ink: #1c1814;
+      --muted: #5e564c;
+      --line: #d8cdb8;
+      --accent: #8d3a1b;
+      --mark: #f3d7c4;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(1200px 500px at 10% -10%, #f6efe2 0%, transparent 55%),
+        var(--bg);
+      color: var(--ink);
+      font-family: "Public Sans", "Segoe UI", sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+
+    .skip {
+      position: absolute;
+      left: 1rem;
+      top: -4rem;
+      background: var(--ink);
+      color: var(--sheet);
+      padding: 0.5rem 0.8rem;
+    }
+
+    .skip:focus { top: 1rem; }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 1.25rem 1.25rem 4rem;
+    }
+
+    header.top {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: baseline;
+      padding: 0.4rem 0 1.1rem;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    header.top a { text-decoration: none; }
+    header.top a:hover { color: var(--accent); }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(220px, 280px) 1fr;
+      gap: 3.5rem;
+      padding-top: 2.4rem;
+    }
+
+    .identity {
+      position: sticky;
+      top: 1.5rem;
+      align-self: start;
+    }
+
+    .identity h1 {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 640;
+      font-size: clamp(2.6rem, 5vw, 3.5rem);
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      margin: 0 0 1rem;
+    }
+
+    .place {
+      margin: 0 0 1.4rem;
+      color: var(--muted);
+    }
+
+    .contact {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .contact a {
+      color: var(--accent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    main section { margin: 0 0 2.8rem; }
+
+    .kicker {
+      margin: 0 0 0.45rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    h2 {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 520;
+      font-size: clamp(1.8rem, 3vw, 2.35rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.8rem;
+    }
+
+    .lede {
+      font-size: 1.18rem;
+      max-width: 38rem;
+      margin: 0 0 1.2rem;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .facts li {
+      background: var(--sheet);
+      border: 1px solid var(--line);
+      padding: 0.85rem 0.9rem 0.75rem;
+    }
+
+    .facts strong {
+      display: block;
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 520;
+      line-height: 1.2;
+    }
+
+    .facts span {
+      display: block;
+      margin-top: 0.25rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .role {
+      background: var(--sheet);
+      border-left: 4px solid var(--accent);
+      padding: 1.1rem 1.15rem 0.3rem;
+    }
+
+    .role h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .role .meta {
+      margin: 0.2rem 0 0.7rem;
+      color: var(--muted);
+    }
+
+    .role ul {
+      margin: 0;
+      padding-left: 1.1rem;
+    }
+
+    .role li { margin: 0 0 0.7rem; }
+
+    .work {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .work li {
+      display: grid;
+      grid-template-columns: 8.5rem 1fr;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .when {
+      color: var(--muted);
+      font-size: 0.92rem;
+      padding-top: 0.15rem;
+    }
+
+    .work h3 {
+      margin: 0 0 0.25rem;
+      font-size: 1.08rem;
+    }
+
+    .work h3 a {
+      text-decoration: none;
+      background-image: linear-gradient(var(--accent), var(--accent));
+      background-size: 0 1px;
+      background-repeat: no-repeat;
+      background-position: 0 100%;
+      transition: background-size 160ms ease;
+    }
+
+    .work h3 a:hover { background-size: 100% 1px; }
+
+    .work p { margin: 0; color: var(--ink); }
+
+    .tag {
+      display: inline-block;
+      margin-top: 0.45rem;
+      padding: 0.1rem 0.45rem;
+      background: var(--mark);
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
+    }
+
+    .schools {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .schools article {
+      display: grid;
+      grid-template-columns: 4.5rem 1fr;
+      gap: 1rem;
+      padding-bottom: 0.9rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .schools h3 { margin: 0 0 0.15rem; font-size: 1.05rem; }
+    .schools p { margin: 0; color: var(--muted); }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .skills li {
+      border: 1px solid var(--line);
+      background: var(--sheet);
+      padding: 0.28rem 0.6rem;
+      font-size: 0.92rem;
+    }
+
+    footer {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    footer a { color: var(--accent); }
+
+    @media (max-width: 800px) {
+      .layout { grid-template-columns: 1fr; gap: 1.8rem; }
+      .identity { position: static; }
+      .facts { grid-template-columns: 1fr; }
+      .work li, .schools article { grid-template-columns: 1fr; gap: 0.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#work">Skip to work</a>
+  <div class="page">
+    <header class="top">
+      <span>One-page site</span>
+      <nav>
+        <a href="#work">Work</a>
+        &nbsp;·&nbsp;
+        <a href="#projects">Projects</a>
+        &nbsp;·&nbsp;
+        <a href="#education">Education</a>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="identity">
+        <h1>Utkarsh Rane</h1>
+        <p class="place">Talod<br>Data labeling, QA, and Java</p>
+        <ul class="contact">
+          <li><a href="mailto:utkarshrane0308@gmail.com">utkarshrane0308@gmail.com</a></li>
+          <li><a href="https://github.com/utkarshrane">github.com/utkarshrane</a></li>
+        </ul>
+      </aside>
+
+      <main>
+        <section id="intro">
+          <p class="kicker">About</p>
+          <h2>I keep training data honest, and I build small systems with clear rules.</h2>
+          <p class="lede">From December 2023 to July 2026 I labeled and reviewed AI datasets at iMerit. Alongside that work I write Java backends that separate the rules of a game or a parking lot from the flow that runs them.</p>
+          <ul class="facts">
+            <li>
+              <strong>Dec 2023 – Jul 2026</strong>
+              <span>iMerit, remote QA and labeling</span>
+            </li>
+            <li>
+              <strong>2023</strong>
+              <span>B.E. / B.Tech, Computer Science</span>
+            </li>
+            <li>
+              <strong>2020</strong>
+              <span>Diploma, Computer Engineering</span>
+            </li>
+          </ul>
+        </section>
+
+        <section id="work">
+          <p class="kicker">Experience</p>
+          <h2>iMerit</h2>
+          <div class="role">
+            <h3>Data Labeling and QA Associate</h3>
+            <p class="meta">Remote · December 2023 – July 2026</p>
+            <ul>
+              <li>Labeled text, image, and structured samples against project guidelines so training sets stayed accurate and ready for model use.</li>
+              <li>Reviewed finished annotations for correctness, edge cases, and consistency across annotators before a batch was released.</li>
+              <li>Caught missing labels, conflicting tags, duplicate rows, incomplete fields, and wrong categories, then logged the patterns so the same mistakes did not repeat.</li>
+              <li>Used Excel and SQL to track batch progress, error counts, rework, and delivery status.</li>
+              <li>Checked reviewed samples against gold references and escalated ambiguous cases instead of guessing a label.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="projects">
+          <p class="kicker">Projects</p>
+          <h2>Code I can show</h2>
+          <ul class="work">
+            <li>
+              <div class="when">28 Sep 2026</div>
+              <div>
+                <h3><a href="https://github.com/utkarshrane/mercury">MERCURY</a></h3>
+                <p>Live multiplayer games — MERCURY, BLOOM, and CALL IT — in JavaScript.</p>
+                <span class="tag">JavaScript</span>
+              </div>
+            </li>
+            <li>
+              <div class="when">24 Jun 2026</div>
+              <div>
+                <h3><a href="https://github.com/utkarshrane/Parking-Lot-Management-System-Java-Backend">Parking Lot Management System</a></h3>
+                <p>Entry, slot allocation, tickets, billing, and payment. Spots are chosen by vehicle type, and fare is calculated from duration and category so allocation stays separate from billing.</p>
+                <span class="tag">Java · SOLID · SQL</span>
+              </div>
+            </li>
+            <li>
+              <div class="when">19 Jun 2026</div>
+              <div>
+                <h3><a href="https://github.com/utkarshrane/TicTacToe-Project-Java-Backend">Tic Tac Toe</a></h3>
+                <p>Console game, human versus bot, with Easy, Medium, and Hard. Win checks use a strategy for rows, columns, and diagonals, with undo, draws, and replay.</p>
+                <span class="tag">Java · design patterns</span>
+              </div>
+            </li>
+            <li>
+              <div class="when">Aug 2022</div>
+              <div>
+                <h3><a href="https://github.com/utkarshrane/Crickinfo_Extracter">Crickinfo Extracter</a></h3>
+                <p>A JavaScript exercise in pulling structured information out of a page, built to learn extraction rather than to ship a product.</p>
+                <span class="tag">JavaScript</span>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section id="education">
+          <p class="kicker">Education</p>
+          <h2>School</h2>
+          <div class="schools">
+            <article>
+              <div class="when">2023</div>
+              <div>
+                <h3>B.E. / B.Tech, Computer Science and Engineering</h3>
+                <p>Chandigarh Engineering College, IK Gujral Punjab Technical University</p>
+              </div>
+            </article>
+            <article>
+              <div class="when">2020</div>
+              <div>
+                <h3>Polytechnic Diploma, Computer Engineering</h3>
+                <p>Government Polytechnic, Hisar — Haryana State Technical Education Society</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="skills">
+          <p class="kicker">Skills</p>
+          <h2>What I use</h2>
+          <ul class="skills">
+            <li>Java</li>
+            <li>SQL</li>
+            <li>Excel</li>
+            <li>Git</li>
+            <li>Data annotation</li>
+            <li>QA and batch validation</li>
+            <li>Guideline compliance</li>
+          </ul>
+        </section>
+
+        <footer>
+          <p>Utkarsh Rane · Talod · <a href="https://github.com/utkarshrane/utkarshrane.github.io">Source on GitHub</a></p>
+        </footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
