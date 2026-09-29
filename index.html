@@ -130,6 +130,36 @@
 
     .mast-links a { color: #f3ecdf; }
 
+    .mast-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
+      gap: 2.2rem;
+      align-items: center;
+    }
+
+    .poster-wrap { margin: 0; }
+    .poster { width: 100%; height: auto; display: block; filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.28)); }
+
+    .about-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 230px;
+      gap: 1.4rem;
+      align-items: end;
+      margin-bottom: 1rem;
+    }
+
+    .about-top .lede { margin-bottom: 0; }
+    .rubric { margin: 0; }
+    .rubric svg { width: 100%; height: auto; display: block; }
+
+    .game-art {
+      width: calc(100% + 2rem);
+      height: 78px;
+      display: block;
+      margin: -0.95rem -1rem 0.8rem;
+      border-radius: 12px 12px 0 0;
+    }
+
     .bar {
       position: sticky;
       top: 0;
@@ -219,6 +249,7 @@
       border-radius: 12px;
       padding: 0.95rem 1rem 0.85rem;
       background: rgba(0, 0, 0, 0.15);
+      overflow: hidden;
     }
 
     .game h3 {
@@ -357,7 +388,8 @@
     }
 
     @media (max-width: 800px) {
-      .games, .clusters, .langs { grid-template-columns: 1fr; }
+      .games, .clusters, .langs, .mast-grid, .about-top { grid-template-columns: 1fr; }
+      .poster-wrap { max-width: 280px; }
       .pieces li, .timeline li { grid-template-columns: 1fr; gap: 0.2rem; }
       .timeline li::before { display: none; }
       .mast { padding-top: 1.8rem; }
@@ -368,21 +400,94 @@
   <a class="skip" href="#about">Skip to about</a>
 
   <header class="mast">
-    <div class="wrap">
-      <p class="eyebrow">Hisar, Haryana</p>
-      <h1>Utkarsh<br>Rane</h1>
-      <p class="who">he/him · Data annotator at iMerit Scholars · July 2026 – present</p>
-      <div class="badges">
-        <span class="badge"><i class="gem" aria-hidden="true"></i> AI Fellow</span>
-        <span class="badge"><i class="gem" aria-hidden="true"></i> AI Project Builder</span>
-        <span class="badge-note">Handshake</span>
+    <div class="wrap mast-grid">
+      <div>
+        <p class="eyebrow">Hisar, Haryana</p>
+        <h1>Utkarsh<br>Rane</h1>
+        <p class="who">he/him · Data annotator at iMerit Scholars · July 2026 – present</p>
+        <div class="badges">
+          <span class="badge"><i class="gem" aria-hidden="true"></i> AI Fellow</span>
+          <span class="badge"><i class="gem" aria-hidden="true"></i> AI Project Builder</span>
+          <span class="badge-note">Handshake</span>
+        </div>
+        <ul class="mast-links">
+          <li><a href="mailto:utkarshrane0308@gmail.com">utkarshrane0308@gmail.com</a></li>
+          <li><a href="https://www.linkedin.com/in/utkarsh-rane/">linkedin.com/in/utkarsh-rane</a></li>
+          <li><a href="https://github.com/utkarshrane">github.com/utkarshrane</a></li>
+          <li><a href="https://www.scaler.com/">Scaler</a></li>
+        </ul>
       </div>
-      <ul class="mast-links">
-        <li><a href="mailto:utkarshrane0308@gmail.com">utkarshrane0308@gmail.com</a></li>
-        <li><a href="https://www.linkedin.com/in/utkarsh-rane/">linkedin.com/in/utkarsh-rane</a></li>
-        <li><a href="https://github.com/utkarshrane">github.com/utkarshrane</a></li>
-        <li><a href="https://www.scaler.com/">Scaler</a></li>
-      </ul>
+      <figure class="poster-wrap">
+        <svg class="poster" viewBox="0 0 320 440" role="img" aria-label="Drawings of four games: a bowl of liquid silver, two dice, a painted floor, and a bell in a cave.">
+          <rect width="320" height="440" rx="24" fill="#f6f1e7"/>
+          <text x="22" y="36" fill="#8d3b1c" font-family="Outfit, sans-serif" font-size="12" letter-spacing="2.4">THE TABLE</text>
+          <g>
+            <rect x="18" y="50" width="284" height="86" rx="14" fill="#1b2621"/>
+            <text x="32" y="74" fill="#8ed56a" font-family="Fraunces, Georgia, serif" font-size="15">Mercury</text>
+            <ellipse cx="214" cy="96" rx="58" ry="14" fill="#24332c"/>
+            <ellipse cx="214" cy="90" rx="48" ry="8" fill="#d7e0da"/>
+            <circle cx="242" cy="84" r="8" fill="#f6f1e7"/>
+            <circle cx="186" cy="88" r="4.5" fill="#8ed56a"/>
+            <path d="M40 92c28-16 48-16 66-4" fill="none" stroke="#8ed56a" stroke-width="2" stroke-linecap="round"/>
+          </g>
+          <g>
+            <rect x="18" y="146" width="284" height="86" rx="14" fill="#1b2621"/>
+            <text x="32" y="170" fill="#8ed56a" font-family="Fraunces, Georgia, serif" font-size="15">Call it</text>
+            <rect x="168" y="160" width="42" height="42" rx="7" fill="#f6f1e7"/>
+            <circle cx="180" cy="172" r="3" fill="#1b2621"/>
+            <circle cx="198" cy="172" r="3" fill="#1b2621"/>
+            <circle cx="189" cy="181" r="3" fill="#1b2621"/>
+            <circle cx="180" cy="190" r="3" fill="#1b2621"/>
+            <circle cx="198" cy="190" r="3" fill="#1b2621"/>
+            <g transform="rotate(8 242 184)">
+              <rect x="222" y="164" width="40" height="40" rx="7" fill="#dff6cf"/>
+              <circle cx="234" cy="176" r="3" fill="#1b2621"/>
+              <circle cx="250" cy="192" r="3" fill="#1b2621"/>
+            </g>
+          </g>
+          <g>
+            <rect x="18" y="242" width="284" height="86" rx="14" fill="#1b2621"/>
+            <text x="32" y="266" fill="#8ed56a" font-family="Fraunces, Georgia, serif" font-size="15">Bloom</text>
+            <g fill="#c46a45">
+              <rect x="150" y="256" width="14" height="14" rx="2"/>
+              <rect x="168" y="256" width="14" height="14" rx="2"/>
+              <rect x="258" y="256" width="14" height="14" rx="2"/>
+              <rect x="150" y="274" width="14" height="14" rx="2"/>
+              <rect x="240" y="274" width="14" height="14" rx="2"/>
+              <rect x="168" y="292" width="14" height="14" rx="2"/>
+              <rect x="258" y="292" width="14" height="14" rx="2"/>
+            </g>
+            <g fill="#8ed56a">
+              <rect x="186" y="256" width="14" height="14" rx="2"/>
+              <rect x="204" y="256" width="14" height="14" rx="2"/>
+              <rect x="222" y="256" width="14" height="14" rx="2"/>
+              <rect x="186" y="274" width="14" height="14" rx="2"/>
+              <rect x="204" y="274" width="14" height="14" rx="2"/>
+              <rect x="222" y="274" width="14" height="14" rx="2"/>
+              <rect x="186" y="292" width="14" height="14" rx="2"/>
+              <rect x="204" y="292" width="14" height="14" rx="2"/>
+            </g>
+            <g fill="#f6f1e7">
+              <rect x="240" y="256" width="14" height="14" rx="2"/>
+              <rect x="168" y="274" width="14" height="14" rx="2"/>
+              <rect x="258" y="274" width="14" height="14" rx="2"/>
+              <rect x="150" y="292" width="14" height="14" rx="2"/>
+              <rect x="222" y="292" width="14" height="14" rx="2"/>
+              <rect x="240" y="292" width="14" height="14" rx="2"/>
+            </g>
+          </g>
+          <g>
+            <rect x="18" y="338" width="284" height="82" rx="14" fill="#1b2621"/>
+            <text x="32" y="362" fill="#8ed56a" font-family="Fraunces, Georgia, serif" font-size="15">Fathom</text>
+            <path d="M150 392c28-46 92-46 120 0" fill="none" stroke="#8fb4a4" stroke-width="2"/>
+            <path d="M196 348h18v8a9 9 0 0 1-18 0z" fill="#e6c56a"/>
+            <line x1="205" y1="366" x2="205" y2="374" stroke="#e6c56a" stroke-width="2"/>
+            <circle cx="168" cy="366" r="3" fill="none" stroke="#c8f0b0"/>
+            <circle cx="182" cy="354" r="2" fill="none" stroke="#c8f0b0"/>
+            <circle cx="246" cy="360" r="3.5" fill="none" stroke="#c8f0b0"/>
+          </g>
+        </svg>
+      </figure>
     </div>
   </header>
 
@@ -403,7 +508,27 @@
     <div class="wrap">
       <section id="about">
         <h2>About</h2>
-        <p class="lede">I judge whether an AI answer is actually right, and I build small live games people can open on a phone.</p>
+        <div class="about-top">
+          <p class="lede">I judge whether an AI answer is actually right, and I build small live games people can open on a phone.</p>
+          <figure class="rubric">
+            <svg viewBox="0 0 230 168" role="img" aria-label="A rubric drawing with bars for accuracy, logic, instructions, and clarity.">
+              <rect width="230" height="168" rx="16" fill="#faf6ef" stroke="#e0d6c6"/>
+              <text x="16" y="28" fill="#8d3b1c" font-family="Outfit, sans-serif" font-size="11" letter-spacing="1.6">RUBRIC</text>
+              <text x="16" y="58" fill="#5e564c" font-family="Outfit, sans-serif" font-size="12">Accuracy</text>
+              <rect x="108" y="48" width="104" height="8" rx="4" fill="#efe6d6"/>
+              <rect x="108" y="48" width="96" height="8" rx="4" fill="#8d3b1c"/>
+              <text x="16" y="84" fill="#5e564c" font-family="Outfit, sans-serif" font-size="12">Logic</text>
+              <rect x="108" y="74" width="104" height="8" rx="4" fill="#efe6d6"/>
+              <rect x="108" y="74" width="74" height="8" rx="4" fill="#1b2621"/>
+              <text x="16" y="110" fill="#5e564c" font-family="Outfit, sans-serif" font-size="12">Instructions</text>
+              <rect x="108" y="100" width="104" height="8" rx="4" fill="#efe6d6"/>
+              <rect x="108" y="100" width="100" height="8" rx="4" fill="#8d3b1c"/>
+              <text x="16" y="136" fill="#5e564c" font-family="Outfit, sans-serif" font-size="12">Clarity</text>
+              <rect x="108" y="126" width="104" height="8" rx="4" fill="#efe6d6"/>
+              <rect x="108" y="126" width="62" height="8" rx="4" fill="#1b2621"/>
+            </svg>
+          </figure>
+        </div>
         <div class="prose">
           <p>The daily work is data and evaluation: annotation, prompt engineering, statistical and exploratory analysis, and both structured and unstructured data. I use Python, SQL, MySQL, Oracle, Excel, Power BI, Java, Git, Docker, and ETL workflows.</p>
           <p>Evaluation tasks I have worked through include terminal environments, code execution, debugging, data processing, information retrieval, and multi-step problems. I score outputs for accuracy, relevance, logic, instruction following, and overall quality, and I write down the errors and the edge cases. I also build precise searches and check that a source deserves to be trusted.</p>
@@ -430,21 +555,91 @@
           <p class="intro">Four games on one host. A room code, no accounts, no install. Phones and laptops stay in the same place.</p>
           <div class="games">
             <article class="game">
+              <svg class="game-art" viewBox="0 0 280 78" aria-hidden="true">
+                <rect width="280" height="78" fill="#121a17"/>
+                <ellipse cx="156" cy="44" rx="86" ry="16" fill="#24332c"/>
+                <ellipse cx="156" cy="38" rx="72" ry="9" fill="#d7e0da"/>
+                <circle cx="198" cy="32" r="9" fill="#f6f1e7"/>
+                <circle cx="118" cy="36" r="5" fill="#8ed56a"/>
+                <path d="M28 46c34-20 58-20 78-6" fill="none" stroke="#8ed56a" stroke-width="2" stroke-linecap="round"/>
+              </svg>
               <h3><a href="https://mercury-4z5a.onrender.com/">MERCURY</a></h3>
               <span class="players">2–6 players</span>
               <p>You share one bowl of liquid silver. Drag your hand through it. While you hold it, it sticks to you. When the clock ends, the most silver wins. The hard part is one liquid that every screen pulls at once.</p>
             </article>
             <article class="game">
+              <svg class="game-art" viewBox="0 0 280 78" aria-hidden="true">
+                <rect width="280" height="78" fill="#121a17"/>
+                <rect x="86" y="16" width="46" height="46" rx="8" fill="#f6f1e7"/>
+                <circle cx="100" cy="30" r="3.2" fill="#1b2621"/>
+                <circle cx="118" cy="30" r="3.2" fill="#1b2621"/>
+                <circle cx="109" cy="39" r="3.2" fill="#1b2621"/>
+                <circle cx="100" cy="48" r="3.2" fill="#1b2621"/>
+                <circle cx="118" cy="48" r="3.2" fill="#1b2621"/>
+                <g transform="rotate(8 164 40)">
+                  <rect x="142" y="18" width="44" height="44" rx="8" fill="#dff6cf"/>
+                  <circle cx="156" cy="32" r="3.2" fill="#1b2621"/>
+                  <circle cx="172" cy="48" r="3.2" fill="#1b2621"/>
+                </g>
+              </svg>
               <h3><a href="https://mercury-4z5a.onrender.com/dice">CALL IT</a></h3>
               <span class="players">2–6 players</span>
               <p>Bluff dice. You only see your own dice. Bid how many of a face are on the table, or call the last bid a lie. A wrong bid costs the bidder a die. A true bid costs the caller. Last player with dice wins.</p>
             </article>
             <article class="game">
+              <svg class="game-art" viewBox="0 0 280 78" aria-hidden="true">
+                <rect width="280" height="78" fill="#121a17"/>
+                <g fill="#c46a45">
+                  <rect x="46" y="16" width="16" height="16" rx="2"/>
+                  <rect x="66" y="16" width="16" height="16" rx="2"/>
+                  <rect x="186" y="16" width="16" height="16" rx="2"/>
+                  <rect x="206" y="16" width="16" height="16" rx="2"/>
+                  <rect x="46" y="36" width="16" height="16" rx="2"/>
+                  <rect x="166" y="36" width="16" height="16" rx="2"/>
+                  <rect x="226" y="36" width="16" height="16" rx="2"/>
+                  <rect x="66" y="56" width="16" height="16" rx="2"/>
+                  <rect x="206" y="56" width="16" height="16" rx="2"/>
+                </g>
+                <g fill="#8ed56a">
+                  <rect x="86" y="16" width="16" height="16" rx="2"/>
+                  <rect x="106" y="16" width="16" height="16" rx="2"/>
+                  <rect x="126" y="16" width="16" height="16" rx="2"/>
+                  <rect x="146" y="16" width="16" height="16" rx="2"/>
+                  <rect x="86" y="36" width="16" height="16" rx="2"/>
+                  <rect x="106" y="36" width="16" height="16" rx="2"/>
+                  <rect x="126" y="36" width="16" height="16" rx="2"/>
+                  <rect x="146" y="36" width="16" height="16" rx="2"/>
+                  <rect x="106" y="56" width="16" height="16" rx="2"/>
+                  <rect x="126" y="56" width="16" height="16" rx="2"/>
+                  <rect x="146" y="56" width="16" height="16" rx="2"/>
+                </g>
+                <g fill="#f6f1e7">
+                  <rect x="166" y="16" width="16" height="16" rx="2"/>
+                  <rect x="66" y="36" width="16" height="16" rx="2"/>
+                  <rect x="186" y="36" width="16" height="16" rx="2"/>
+                  <rect x="206" y="36" width="16" height="16" rx="2"/>
+                  <rect x="46" y="56" width="16" height="16" rx="2"/>
+                  <rect x="86" y="56" width="16" height="16" rx="2"/>
+                  <rect x="166" y="56" width="16" height="16" rx="2"/>
+                  <rect x="186" y="56" width="16" height="16" rx="2"/>
+                  <rect x="226" y="56" width="16" height="16" rx="2"/>
+                </g>
+              </svg>
               <h3><a href="https://mercury-4z5a.onrender.com/bloom">BLOOM</a></h3>
               <span class="players">2–8 players</span>
               <p>A shared floor of paint. Move, and your color stays behind you. Paint over someone, and that part becomes yours. Most color at the clock wins. A lead vanishes the moment someone cuts across it.</p>
             </article>
             <article class="game">
+              <svg class="game-art" viewBox="0 0 280 78" aria-hidden="true">
+                <rect width="280" height="78" fill="#121a17"/>
+                <path d="M36 64c40-52 168-52 208 0" fill="none" stroke="#8fb4a4" stroke-width="2"/>
+                <path d="M128 30h22v10a11 11 0 0 1-22 0z" fill="#e6c56a"/>
+                <line x1="139" y1="52" x2="139" y2="62" stroke="#e6c56a" stroke-width="2"/>
+                <circle cx="78" cy="40" r="4" fill="none" stroke="#c8f0b0"/>
+                <circle cx="98" cy="28" r="2.5" fill="none" stroke="#c8f0b0"/>
+                <circle cx="196" cy="34" r="4.5" fill="none" stroke="#c8f0b0"/>
+                <circle cx="214" cy="48" r="2.5" fill="none" stroke="#c8f0b0"/>
+              </svg>
               <h3><a href="https://mercury-4z5a.onrender.com/fathom">FATHOM</a></h3>
               <span class="players">2–6 players</span>
               <p>One sunken cave, three gold bells. Drag to swim, carry a bell to the moon pool, and touch whoever holds one to take it. Breathe on the bubble vents. First to surface two bells wins.</p>
