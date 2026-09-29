@@ -3,439 +3,660 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Utkarsh Rane — Data labeling, QA, and Java</title>
-  <meta name="description" content="Utkarsh Rane, from Talod. Data Labeling and QA Associate at iMerit from December 2023 to July 2026, and builder of Java backends for Tic Tac Toe and a parking lot system.">
+  <title>Utkarsh Rane — AI evaluation, data, and live games</title>
+  <meta name="description" content="Utkarsh Rane, he/him, Hisar. Data Annotator at iMerit Scholars, Handshake AI Fellow and AI Project Builder. Annotation, LLM evaluation, and live multiplayer games.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,640&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,560;0,9..144,650;1,9..144,520&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #efe6d6;
-      --sheet: #f7f1e6;
-      --ink: #1c1814;
+      --ink: #171410;
       --muted: #5e564c;
-      --line: #d8cdb8;
-      --accent: #8d3a1b;
-      --mark: #f3d7c4;
+      --paper: #f3eee4;
+      --sheet: #faf6ef;
+      --line: #e0d6c6;
+      --rust: #8d3b1c;
+      --night: #141816;
+      --felt: #1b2621;
+      --badge: #dff6cf;
+      --badge-ink: #163016;
+      --live: #8ed56a;
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      background:
-        radial-gradient(1200px 500px at 10% -10%, #f6efe2 0%, transparent 55%),
-        var(--bg);
+      background: var(--paper);
       color: var(--ink);
-      font-family: "Public Sans", "Segoe UI", sans-serif;
+      font-family: Outfit, "Segoe UI", sans-serif;
       font-size: 1.05rem;
       line-height: 1.55;
     }
 
-    a { color: inherit; }
+    a { color: var(--rust); }
+    a:hover { text-decoration-thickness: 2px; }
+
+    ::selection { background: var(--badge); color: var(--badge-ink); }
 
     .skip {
       position: absolute;
       left: 1rem;
       top: -4rem;
       background: var(--ink);
-      color: var(--sheet);
-      padding: 0.5rem 0.8rem;
+      color: var(--paper);
+      padding: 0.45rem 0.7rem;
+    }
+    .skip:focus { top: 0.6rem; z-index: 5; }
+
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 1.25rem; }
+
+    .mast {
+      background:
+        radial-gradient(700px 280px at 100% 0%, rgba(223, 246, 207, 0.14), transparent 60%),
+        var(--night);
+      color: #f6f1e7;
+      padding: 2.6rem 0 2.2rem;
     }
 
-    .skip:focus { top: 1rem; }
-
-    .page {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 1.25rem 1.25rem 4rem;
+    .eyebrow {
+      margin: 0 0 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      color: #c8f0b0;
     }
 
-    header.top {
+    h1 {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 650;
+      font-size: clamp(3.3rem, 8vw, 6rem);
+      line-height: 0.88;
+      letter-spacing: -0.04em;
+      margin: 0;
+    }
+
+    .who {
+      margin: 1rem 0 0;
+      color: #d9d0c3;
+      font-size: 1.05rem;
+    }
+
+    .badges {
       display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      align-items: baseline;
-      padding: 0.4rem 0 1.1rem;
-      border-bottom: 1px solid var(--line);
-      font-size: 0.82rem;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 1.25rem 0 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--badge);
+      color: var(--badge-ink);
+      border-radius: 999px;
+      padding: 0.38rem 0.8rem 0.38rem 0.62rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+    }
+
+    .gem {
+      width: 0.48rem;
+      height: 0.48rem;
+      background: #1d6a34;
+      transform: rotate(45deg);
+      flex: none;
+    }
+
+    .badge-note {
+      color: #b7c4b4;
+      font-size: 0.85rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--muted);
     }
 
-    header.top a { text-decoration: none; }
-    header.top a:hover { color: var(--accent); }
-
-    .layout {
-      display: grid;
-      grid-template-columns: minmax(220px, 280px) 1fr;
-      gap: 3.5rem;
-      padding-top: 2.4rem;
-    }
-
-    .identity {
-      position: sticky;
-      top: 1.5rem;
-      align-self: start;
-    }
-
-    .identity h1 {
-      font-family: Fraunces, Georgia, serif;
-      font-weight: 640;
-      font-size: clamp(2.6rem, 5vw, 3.5rem);
-      line-height: 0.92;
-      letter-spacing: -0.03em;
-      margin: 0 0 1rem;
-    }
-
-    .place {
-      margin: 0 0 1.4rem;
-      color: var(--muted);
-    }
-
-    .contact {
+    .mast-links {
       display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      margin: 0;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.1rem;
+      margin: 1.15rem 0 0;
       padding: 0;
       list-style: none;
     }
 
-    .contact a {
-      color: var(--accent);
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
+    .mast-links a { color: #f3ecdf; }
+
+    .bar {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      background: rgba(243, 238, 228, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
     }
 
-    main section { margin: 0 0 2.8rem; }
-
-    .kicker {
-      margin: 0 0 0.45rem;
+    .bar ul {
+      display: flex;
+      gap: 1.15rem;
+      margin: 0;
+      padding: 0.72rem 0;
+      list-style: none;
+      overflow-x: auto;
       font-size: 0.78rem;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 600;
     }
+
+    .bar a {
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .bar a:hover { color: var(--rust); }
+
+    main { padding: 2.4rem 0 4rem; }
+
+    section { margin: 0 0 3rem; }
 
     h2 {
       font-family: Fraunces, Georgia, serif;
-      font-weight: 520;
-      font-size: clamp(1.8rem, 3vw, 2.35rem);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin: 0 0 0.8rem;
+      font-weight: 560;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin: 0 0 0.9rem;
     }
 
     .lede {
-      font-size: 1.18rem;
-      max-width: 38rem;
-      margin: 0 0 1.2rem;
-    }
-
-    .facts {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.8rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .facts li {
-      background: var(--sheet);
-      border: 1px solid var(--line);
-      padding: 0.85rem 0.9rem 0.75rem;
-    }
-
-    .facts strong {
-      display: block;
       font-family: Fraunces, Georgia, serif;
-      font-size: 1.15rem;
       font-weight: 520;
-      line-height: 1.2;
+      font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      max-width: 40rem;
+      margin: 0 0 1rem;
     }
 
-    .facts span {
-      display: block;
-      margin-top: 0.25rem;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
+    .prose { max-width: 42rem; }
+    .prose p { margin: 0 0 0.85rem; }
 
     .role {
       background: var(--sheet);
-      border-left: 4px solid var(--accent);
-      padding: 1.1rem 1.15rem 0.3rem;
+      border-left: 4px solid var(--rust);
+      padding: 1.05rem 1.15rem 0.35rem;
     }
 
-    .role h3 {
-      margin: 0;
-      font-size: 1.2rem;
+    .role h3 { margin: 0; font-size: 1.15rem; }
+    .meta { margin: 0.2rem 0 0.75rem; color: var(--muted); }
+    .role ul { margin: 0; padding-left: 1.15rem; }
+    .role li { margin: 0 0 0.65rem; }
+
+    .table {
+      background:
+        radial-gradient(500px 180px at 0% 0%, rgba(223, 246, 207, 0.12), transparent 55%),
+        var(--felt);
+      color: #f4efe6;
+      border-radius: 18px;
+      padding: 1.3rem 1.15rem 1.15rem;
     }
 
-    .role .meta {
-      margin: 0.2rem 0 0.7rem;
-      color: var(--muted);
+    .table h2 { color: #f7f2e9; }
+    .table .intro { margin: 0 0 1rem; color: #d5d0c6; max-width: 40rem; }
+
+    .games {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
     }
 
-    .role ul {
-      margin: 0;
-      padding-left: 1.1rem;
+    .game {
+      border: 1px solid rgba(244, 239, 230, 0.16);
+      border-radius: 12px;
+      padding: 0.95rem 1rem 0.85rem;
+      background: rgba(0, 0, 0, 0.15);
     }
 
-    .role li { margin: 0 0 0.7rem; }
+    .game h3 {
+      margin: 0 0 0.35rem;
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 560;
+      font-size: 1.45rem;
+      letter-spacing: -0.02em;
+    }
 
-    .work {
+    .game h3 a { color: var(--live); text-decoration: none; }
+    .game h3 a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .game p { margin: 0; color: #e7e1d6; font-size: 0.98rem; }
+    .players {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: #b7c4b4;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .next {
+      margin: 0.9rem 0 0;
+      color: #c9d4c4;
+      font-size: 0.95rem;
+    }
+
+    .pieces {
       list-style: none;
       margin: 0;
       padding: 0;
       border-top: 1px solid var(--line);
     }
 
-    .work li {
+    .pieces li {
       display: grid;
-      grid-template-columns: 8.5rem 1fr;
+      grid-template-columns: 8.2rem 1fr;
       gap: 1rem;
       padding: 1rem 0;
       border-bottom: 1px solid var(--line);
     }
 
-    .when {
+    .kind {
+      margin: 0.15rem 0 0;
       color: var(--muted);
-      font-size: 0.92rem;
-      padding-top: 0.15rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
-    .work h3 {
-      margin: 0 0 0.25rem;
-      font-size: 1.08rem;
-    }
+    .pieces h3 { margin: 0 0 0.3rem; font-size: 1.08rem; }
+    .pieces h3 a { color: var(--ink); }
+    .pieces p { margin: 0; }
+    .tools { margin-top: 0.4rem; color: var(--muted); font-size: 0.92rem; }
 
-    .work h3 a {
-      text-decoration: none;
-      background-image: linear-gradient(var(--accent), var(--accent));
-      background-size: 0 1px;
-      background-repeat: no-repeat;
-      background-position: 0 100%;
-      transition: background-size 160ms ease;
-    }
-
-    .work h3 a:hover { background-size: 100% 1px; }
-
-    .work p { margin: 0; color: var(--ink); }
-
-    .tag {
-      display: inline-block;
-      margin-top: 0.45rem;
-      padding: 0.1rem 0.45rem;
-      background: var(--mark);
-      font-size: 0.8rem;
-      letter-spacing: 0.02em;
-    }
-
-    .schools {
+    .timeline { margin: 0; padding: 0; list-style: none; }
+    .timeline li {
       display: grid;
-      gap: 0.9rem;
-    }
-
-    .schools article {
-      display: grid;
-      grid-template-columns: 4.5rem 1fr;
+      grid-template-columns: 11rem 1fr;
       gap: 1rem;
-      padding-bottom: 0.9rem;
-      border-bottom: 1px solid var(--line);
+      padding: 0 0 1.15rem 0;
+      position: relative;
     }
 
-    .schools h3 { margin: 0 0 0.15rem; font-size: 1.05rem; }
-    .schools p { margin: 0; color: var(--muted); }
+    .timeline li::before {
+      content: "";
+      position: absolute;
+      left: 10.55rem;
+      top: 0.45rem;
+      width: 0.48rem;
+      height: 0.48rem;
+      background: var(--rust);
+      transform: rotate(45deg);
+    }
 
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
+    .when { margin: 0; color: var(--muted); font-size: 0.92rem; }
+    .timeline h3 { margin: 0 0 0.15rem; font-size: 1.05rem; }
+    .timeline p { margin: 0; color: var(--muted); }
+
+    .courses { margin: 0.3rem 0 0; color: var(--muted); }
+
+    .clusters {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .cluster {
+      background: var(--sheet);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 0.9rem 0.9rem 0.75rem;
+    }
+
+    .cluster h3 {
+      margin: 0 0 0.65rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rust);
+    }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0; padding: 0; list-style: none; }
+    .chips li {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 0.18rem 0.55rem;
+      font-size: 0.82rem;
+    }
+
+    .langs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
       margin: 0;
       padding: 0;
       list-style: none;
     }
 
-    .skills li {
-      border: 1px solid var(--line);
+    .langs li {
       background: var(--sheet);
-      padding: 0.28rem 0.6rem;
-      font-size: 0.92rem;
+      border-radius: 14px;
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--line);
     }
+
+    .langs strong { display: block; font-family: Fraunces, Georgia, serif; font-size: 1.35rem; font-weight: 560; }
+    .langs span { color: var(--muted); }
 
     footer {
-      margin-top: 1rem;
-      padding-top: 1rem;
       border-top: 1px solid var(--line);
+      padding: 1.2rem 0 2rem;
       color: var(--muted);
-      font-size: 0.92rem;
     }
 
-    footer a { color: var(--accent); }
-
     @media (max-width: 800px) {
-      .layout { grid-template-columns: 1fr; gap: 1.8rem; }
-      .identity { position: static; }
-      .facts { grid-template-columns: 1fr; }
-      .work li, .schools article { grid-template-columns: 1fr; gap: 0.2rem; }
+      .games, .clusters, .langs { grid-template-columns: 1fr; }
+      .pieces li, .timeline li { grid-template-columns: 1fr; gap: 0.2rem; }
+      .timeline li::before { display: none; }
+      .mast { padding-top: 1.8rem; }
     }
   </style>
 </head>
 <body>
-  <a class="skip" href="#work">Skip to work</a>
-  <div class="page">
-    <header class="top">
-      <span>One-page site</span>
-      <nav>
-        <a href="#work">Work</a>
-        &nbsp;·&nbsp;
-        <a href="#projects">Projects</a>
-        &nbsp;·&nbsp;
-        <a href="#education">Education</a>
-      </nav>
-    </header>
+  <a class="skip" href="#about">Skip to about</a>
 
-    <div class="layout">
-      <aside class="identity">
-        <h1>Utkarsh Rane</h1>
-        <p class="place">Talod<br>Data labeling, QA, and Java</p>
-        <ul class="contact">
-          <li><a href="mailto:utkarshrane0308@gmail.com">utkarshrane0308@gmail.com</a></li>
-          <li><a href="https://github.com/utkarshrane">github.com/utkarshrane</a></li>
-        </ul>
-      </aside>
-
-      <main>
-        <section id="intro">
-          <p class="kicker">About</p>
-          <h2>I keep training data honest, and I build small systems with clear rules.</h2>
-          <p class="lede">From December 2023 to July 2026 I labeled and reviewed AI datasets at iMerit. Alongside that work I write Java backends that separate the rules of a game or a parking lot from the flow that runs them.</p>
-          <ul class="facts">
-            <li>
-              <strong>Dec 2023 – Jul 2026</strong>
-              <span>iMerit, remote QA and labeling</span>
-            </li>
-            <li>
-              <strong>2023</strong>
-              <span>B.E. / B.Tech, Computer Science</span>
-            </li>
-            <li>
-              <strong>2020</strong>
-              <span>Diploma, Computer Engineering</span>
-            </li>
-          </ul>
-        </section>
-
-        <section id="work">
-          <p class="kicker">Experience</p>
-          <h2>iMerit</h2>
-          <div class="role">
-            <h3>Data Labeling and QA Associate</h3>
-            <p class="meta">Remote · December 2023 – July 2026</p>
-            <ul>
-              <li>Labeled text, image, and structured samples against project guidelines so training sets stayed accurate and ready for model use.</li>
-              <li>Reviewed finished annotations for correctness, edge cases, and consistency across annotators before a batch was released.</li>
-              <li>Caught missing labels, conflicting tags, duplicate rows, incomplete fields, and wrong categories, then logged the patterns so the same mistakes did not repeat.</li>
-              <li>Used Excel and SQL to track batch progress, error counts, rework, and delivery status.</li>
-              <li>Checked reviewed samples against gold references and escalated ambiguous cases instead of guessing a label.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section id="projects">
-          <p class="kicker">Projects</p>
-          <h2>Code I can show</h2>
-          <ul class="work">
-            <li>
-              <div class="when">28 Sep 2026</div>
-              <div>
-                <h3><a href="https://github.com/utkarshrane/mercury">MERCURY</a></h3>
-                <p>Live multiplayer games — MERCURY, BLOOM, and CALL IT — in JavaScript.</p>
-                <span class="tag">JavaScript</span>
-              </div>
-            </li>
-            <li>
-              <div class="when">24 Jun 2026</div>
-              <div>
-                <h3><a href="https://github.com/utkarshrane/Parking-Lot-Management-System-Java-Backend">Parking Lot Management System</a></h3>
-                <p>Entry, slot allocation, tickets, billing, and payment. Spots are chosen by vehicle type, and fare is calculated from duration and category so allocation stays separate from billing.</p>
-                <span class="tag">Java · SOLID · SQL</span>
-              </div>
-            </li>
-            <li>
-              <div class="when">19 Jun 2026</div>
-              <div>
-                <h3><a href="https://github.com/utkarshrane/TicTacToe-Project-Java-Backend">Tic Tac Toe</a></h3>
-                <p>Console game, human versus bot, with Easy, Medium, and Hard. Win checks use a strategy for rows, columns, and diagonals, with undo, draws, and replay.</p>
-                <span class="tag">Java · design patterns</span>
-              </div>
-            </li>
-            <li>
-              <div class="when">22 Aug 2022</div>
-              <div>
-                <h3><a href="https://github.com/utkarshrane/Web-Automation-of-HackerRank-Website-adding-mediator">HackerRank automation</a></h3>
-                <p>Browser automation for the HackerRank site, with a mediator sitting between the page and the steps that drive it.</p>
-                <span class="tag">JavaScript</span>
-              </div>
-            </li>
-            <li>
-              <div class="when">15 Aug 2022</div>
-              <div>
-                <h3><a href="https://github.com/utkarshrane/Crickinfo_Extracter">Crickinfo Extracter</a></h3>
-                <p>A JavaScript exercise in pulling structured information out of a page, built to learn extraction rather than to ship a product.</p>
-                <span class="tag">JavaScript</span>
-              </div>
-            </li>
-          </ul>
-        </section>
-
-        <section id="education">
-          <p class="kicker">Education</p>
-          <h2>School</h2>
-          <div class="schools">
-            <article>
-              <div class="when">2023</div>
-              <div>
-                <h3>B.E. / B.Tech, Computer Science and Engineering</h3>
-                <p>Chandigarh Engineering College, IK Gujral Punjab Technical University</p>
-              </div>
-            </article>
-            <article>
-              <div class="when">2020</div>
-              <div>
-                <h3>Polytechnic Diploma, Computer Engineering</h3>
-                <p>Government Polytechnic, Hisar — Haryana State Technical Education Society</p>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section id="skills">
-          <p class="kicker">Skills</p>
-          <h2>What I use</h2>
-          <ul class="skills">
-            <li>Java</li>
-            <li>SQL</li>
-            <li>Excel</li>
-            <li>Git</li>
-            <li>Data annotation</li>
-            <li>QA and batch validation</li>
-            <li>Guideline compliance</li>
-          </ul>
-        </section>
-
-        <footer>
-          <p>Utkarsh Rane · Talod · <a href="https://github.com/utkarshrane/utkarshrane.github.io">Source on GitHub</a></p>
-        </footer>
-      </main>
+  <header class="mast">
+    <div class="wrap">
+      <p class="eyebrow">Hisar, Haryana</p>
+      <h1>Utkarsh<br>Rane</h1>
+      <p class="who">he/him · Data annotator at iMerit Scholars · July 2026 – present</p>
+      <div class="badges">
+        <span class="badge"><i class="gem" aria-hidden="true"></i> AI Fellow</span>
+        <span class="badge"><i class="gem" aria-hidden="true"></i> AI Project Builder</span>
+        <span class="badge-note">Handshake</span>
+      </div>
+      <ul class="mast-links">
+        <li><a href="mailto:utkarshrane0308@gmail.com">utkarshrane0308@gmail.com</a></li>
+        <li><a href="https://github.com/utkarshrane">github.com/utkarshrane</a></li>
+        <li><a href="https://www.scaler.com/">Scaler</a></li>
+      </ul>
     </div>
-  </div>
+  </header>
+
+  <nav class="bar" aria-label="Page">
+    <div class="wrap">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#games">Games</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div class="wrap">
+      <section id="about">
+        <h2>About</h2>
+        <p class="lede">I judge whether an AI answer is actually right, and I build small live games people can open on a phone.</p>
+        <div class="prose">
+          <p>The daily work is data and evaluation: annotation, prompt engineering, statistical and exploratory analysis, and both structured and unstructured data. I use Python, SQL, MySQL, Oracle, Excel, Power BI, Java, Git, Docker, and ETL workflows.</p>
+          <p>Evaluation tasks I have worked through include terminal environments, code execution, debugging, data processing, information retrieval, and multi-step problems. I score outputs for accuracy, relevance, logic, instruction following, and overall quality, and I write down the errors and the edge cases. I also build precise searches and check that a source deserves to be trusted.</p>
+          <p>I care about accuracy, consistency, and a result I can stand behind. The work I want more of is AI training, LLM evaluation, data quality, and the workflows around them.</p>
+        </div>
+      </section>
+
+      <section id="work">
+        <h2>Work</h2>
+        <article class="role">
+          <h3>Data Annotator, gig role</h3>
+          <p class="meta">iMerit Scholars · July 2026 – present</p>
+          <ul>
+            <li>Annotated, tagged, and validated large text and image datasets for AI and ML models, and kept accuracy above 98%.</li>
+            <li>Ran quality checks, fixed disagreements in the labels, and held each batch to the project standard.</li>
+            <li>Worked with other teams so annotated sets were ready on time for training and for evaluation.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section id="games">
+        <div class="table">
+          <h2>Live games</h2>
+          <p class="intro">Four games on one host. A room code, no accounts, no install. Phones and laptops stay in the same place.</p>
+          <div class="games">
+            <article class="game">
+              <h3><a href="https://mercury-4z5a.onrender.com/">MERCURY</a></h3>
+              <span class="players">2–6 players</span>
+              <p>You share one bowl of liquid silver. Drag your hand through it. While you hold it, it sticks to you. When the clock ends, the most silver wins. The hard part is one liquid that every screen pulls at once.</p>
+            </article>
+            <article class="game">
+              <h3><a href="https://mercury-4z5a.onrender.com/dice">CALL IT</a></h3>
+              <span class="players">2–6 players</span>
+              <p>Bluff dice. You only see your own dice. Bid how many of a face are on the table, or call the last bid a lie. A wrong bid costs the bidder a die. A true bid costs the caller. Last player with dice wins.</p>
+            </article>
+            <article class="game">
+              <h3><a href="https://mercury-4z5a.onrender.com/bloom">BLOOM</a></h3>
+              <span class="players">2–8 players</span>
+              <p>A shared floor of paint. Move, and your color stays behind you. Paint over someone, and that part becomes yours. Most color at the clock wins. A lead vanishes the moment someone cuts across it.</p>
+            </article>
+            <article class="game">
+              <h3><a href="https://mercury-4z5a.onrender.com/fathom">FATHOM</a></h3>
+              <span class="players">2–6 players</span>
+              <p>One sunken cave, three gold bells. Drag to swim, carry a bell to the moon pool, and touch whoever holds one to take it. Breathe on the bubble vents. First to surface two bells wins.</p>
+            </article>
+          </div>
+          <p class="next">Next for the table: sound, a host that stays up, room for more hands, and a one-tap rematch.</p>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2>Projects</h2>
+        <ul class="pieces">
+          <li>
+            <p class="kind">Evaluation</p>
+            <div>
+              <h3>LLM Response Quality Lab</h3>
+              <p>A scoring workflow with rubrics for accuracy, instruction following, safety, and clarity. Pairwise preference (A versus B) with a short written reason, hallucination checks against a source, red-team prompts, and bias and trust-and-safety labels. A calibration pass at the end keeps the marks consistent.</p>
+            </div>
+          </li>
+          <li>
+            <p class="kind">Evaluation</p>
+            <div>
+              <h3>LLM response evaluation</h3>
+              <p>Scored generated answers for consistency, correctness, relevance, clarity, and instruction following. Built rubrics, compared outputs, and recorded faults and edge cases.</p>
+              <p class="tools">Python · Generative AI · prompt engineering</p>
+            </div>
+          </li>
+          <li>
+            <p class="kind">Research</p>
+            <div>
+              <h3>Tool-using agents under distribution shift</h3>
+              <p>Benchmarks for tool-using LLM agents when the input shifts or turns adversarial. Covers reasoning, code execution, data processing, and tool use, with test oracles and failure types: wrong tool, misread instructions, hallucinated output, broken state, and edge cases. Measured success, failure, consistency, robustness, and recovery.</p>
+              <p class="tools">Python · Docker · pytest · Git</p>
+            </div>
+          </li>
+          <li>
+            <p class="kind">Study</p>
+            <div>
+              <h3><a href="https://progress.openai.com/">Two toaster stories</a></h3>
+              <p>Prompt: tell a 50-word story about a toaster that becomes sentient. A is text-davinci-001 (2021). B is gpt-4-0314 (2023). I chose B: it is 50 words and it finishes. A’s conflict is sharper, but it runs about 84 words and stops at “burning it.” Newer is not automatically better. Only B meets the request.</p>
+            </div>
+          </li>
+          <li>
+            <p class="kind">Machine learning</p>
+            <div>
+              <h3>Sentiment analysis</h3>
+              <p>A model that sorts text into positive, negative, and neutral. Cleaning, features, training, and evaluation.</p>
+              <p class="tools">Python · NLP · Pandas · scikit-learn</p>
+            </div>
+          </li>
+          <li>
+            <p class="kind">Machine learning</p>
+            <div>
+              <h3>Customer churn</h3>
+              <p>A model for which clients are likely to leave a service, and which features drive that decision. Cleaning, exploratory analysis, feature engineering, training, and evaluation.</p>
+              <p class="tools">Python · Pandas · scikit-learn · SQL</p>
+            </div>
+          </li>
+          <li>
+            <p class="kind">Java</p>
+            <div>
+              <h3><a href="https://github.com/utkarshrane/TicTacToe-Project-Java-Backend">Tic Tac Toe</a></h3>
+              <p>Console game, human versus bot, with more than one difficulty. Win checks use a strategy for rows, columns, and diagonals. Undo, bot moves, and a board whose state stays consistent.</p>
+            </div>
+          </li>
+          <li>
+            <p class="kind">Java</p>
+            <div>
+              <h3><a href="https://github.com/utkarshrane/Parking-Lot-Management-System-Java-Backend">Parking lot</a></h3>
+              <p>Entry, floors, slots, tickets, payment, and billing. Slot assignment is a strategy, with repository and service layers, so allocation stays separate from checkout.</p>
+            </div>
+          </li>
+          <li>
+            <p class="kind">Slack</p>
+            <div>
+              <h3><a href="https://app.joinhandshake.com/learn/api/public/assets/private_asset_cmulh8et402561znr9zeq62qq">Compliment</a></h3>
+              <p>Posts one short compliment when someone runs /compliment. Two bot scopes: commands, so Slack can deliver the slash command, and chat:write, so the app can post the reply. It does not read message history, files, or profiles. Next: /compliment @alex sends it to that person.</p>
+            </div>
+          </li>
+          <li>
+            <p class="kind">Video</p>
+            <div>
+              <h3><a href="https://drive.google.com/file/d/1O1j58CPHi9pfQojoBUptOPGEVVKmD7VI/view">This week on campus</a></h3>
+              <p>A still and an 8-second video for Campus Activities Board. A dusk movie night on the quad. Headline: “This week on campus.” Line: “Free for students.” The camera eases toward the screen, confetti drifts, and the string lights warm up.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section id="education">
+        <h2>Education</h2>
+        <ol class="timeline">
+          <li>
+            <p class="when">Aug 2025 – Aug 2026</p>
+            <div>
+              <h3>Certificate, Software Development and Artificial Intelligence</h3>
+              <p><a href="https://www.scaler.com/">Scaler Academy</a></p>
+            </div>
+          </li>
+          <li>
+            <p class="when">Aug 2020 – Jun 2026</p>
+            <div>
+              <h3>Doctorate, Computer Science with Artificial Intelligence</h3>
+              <p>Chandigarh University</p>
+            </div>
+          </li>
+          <li>
+            <p class="when">Aug 2018 – May 2020</p>
+            <div>
+              <h3>Master’s, Computer Science with Artificial Intelligence</h3>
+              <p>Maharshi Dayanand University</p>
+            </div>
+          </li>
+          <li>
+            <p class="when">Aug 2014 – Jan 2018</p>
+            <div>
+              <h3>Bachelor’s, Computer Science and Engineering</h3>
+              <p>IK Gujral Punjab Technical University, Chandigarh Engineering College</p>
+            </div>
+          </li>
+          <li>
+            <p class="when">Aug 2012 – May 2014</p>
+            <div>
+              <h3>Technical diploma, Computer Engineering</h3>
+              <p>Government Polytechnic, Mandi Adampur, Hisar</p>
+            </div>
+          </li>
+        </ol>
+        <p class="courses">Courses: machine learning, generative AI and large language models, prompt engineering, natural language processing, data analysis with Python, artificial intelligence, SQL and database management, deep learning, and Scaler Academy software development and AI.</p>
+      </section>
+
+      <section id="skills">
+        <h2>Skills</h2>
+        <div class="clusters">
+          <article class="cluster">
+            <h3>Evaluate</h3>
+            <ul class="chips">
+              <li>LLM evaluation</li>
+              <li>Prompt engineering</li>
+              <li>Hallucination detection</li>
+              <li>Pairwise comparison</li>
+              <li>Preference ranking</li>
+              <li>RLHF</li>
+              <li>Fact checking</li>
+              <li>Red teaming</li>
+              <li>AI safety</li>
+              <li>Bias detection</li>
+              <li>Instruction following</li>
+              <li>Response evaluation</li>
+              <li>Quality control</li>
+              <li>Taxonomy</li>
+              <li>Technical writing</li>
+            </ul>
+          </article>
+          <article class="cluster">
+            <h3>Data</h3>
+            <ul class="chips">
+              <li>Data annotation</li>
+              <li>Data labeling</li>
+              <li>Data quality</li>
+              <li>Python</li>
+              <li>SQL</li>
+              <li>MySQL</li>
+              <li>Oracle</li>
+              <li>SQL Server</li>
+              <li>Excel</li>
+              <li>Power BI</li>
+              <li>Exploratory analysis</li>
+              <li>Statistical analysis</li>
+              <li>ETL</li>
+            </ul>
+          </article>
+          <article class="cluster">
+            <h3>Build</h3>
+            <ul class="chips">
+              <li>Java</li>
+              <li>JavaScript</li>
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>React</li>
+              <li>Node.js</li>
+              <li>Spring</li>
+              <li>Git</li>
+              <li>Docker</li>
+              <li>Unit testing</li>
+              <li>Code review</li>
+              <li>Machine learning</li>
+              <li>NLP</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="languages" aria-labelledby="lang-heading">
+        <h2 id="lang-heading">Languages</h2>
+        <ul class="langs">
+          <li>
+            <strong>Hindi</strong>
+            <span>Native or bilingual</span>
+          </li>
+          <li>
+            <strong>English</strong>
+            <span>Professional working</span>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>Utkarsh Rane · Hisar · <a href="https://github.com/utkarshrane/utkarshrane.github.io">Source on GitHub</a></p>
+    </div>
+  </footer>
 </body>
 </html>

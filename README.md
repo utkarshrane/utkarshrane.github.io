@@ -1,6 +1,6 @@
 # Utkarsh Rane
 
-One-page site about my work: data labeling and QA at iMerit (December 2023 – July 2026), and Java projects I can show.
+One-page site: data annotation at iMerit Scholars, Handshake AI Fellow and AI Project Builder, and the live games MERCURY, CALL IT, BLOOM, and FATHOM.
 
 Live: https://utkarshrane.github.io/
 
